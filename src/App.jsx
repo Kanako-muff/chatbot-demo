@@ -15,6 +15,45 @@ class App extends React.Component {
       dataset: defaultDataset,
       open: false
     }
+    /* Without this, when it called as call back function, selectedAnswer function is created every time it rendered. */
+    this.selectedAnswer = this.selectAnswer.bind(this);
+  }
+
+  displayNextQuestion = (nextQuestionId) => {
+    const chats = this.state.chats;
+    chats.push({
+      text: this.state.dataset[nextQuestionId].question,
+      type: 'question'
+    })
+
+    this.setState({
+      answers: this.state.dataset[nextQuestionId].answers,
+      chats: chats,
+      currentId: nextQuestionId
+    })
+  }
+
+  selectAnswer = (selectedAnswer, nextQuestionId) => {
+    switch(true) {
+      case (nextQuestionId === 'init'):
+        this.displayNextQuestion(nextQuestionId);
+        break;
+      default:
+        const chats = this.state.chats;
+        chats.push(
+          {
+            text: selectedAnswer,
+            type: 'answer'
+          }
+        );
+    
+        this.setState({
+          chats: chats
+        })
+
+        this.displayNextQuestion(nextQuestionId);
+        break;
+    }
   }
 
   initAnswer = () => {
@@ -34,7 +73,7 @@ class App extends React.Component {
     }
 
     const chats = this.state.chats;
-    chats.push(chat);
+    chats.push(chat)
 
     this.setState({
       chats: chats
@@ -43,8 +82,8 @@ class App extends React.Component {
 
   //run render ▶︎ run initAnswer function （set the data of initAnswers ← dataset.js "init": answers） 
   componentDidMount(){
-    this.initChats();
-    this.initAnswer();
+    const initAnswer = "";
+    this.selectAnswer(initAnswer, this.state.currentId);
   }
 
   render() {
@@ -52,7 +91,7 @@ class App extends React.Component {
       <section className='c-section'>
         <div className='c-box'>
           <Chats chats = {this.state.chats} />
-          <AnswersList answers = {this.state.answers} />
+          <AnswersList answers = {this.state.answers} select={this.selectedAnswer} />
         </div>
       </section>
     );
