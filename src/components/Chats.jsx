@@ -1,17 +1,7 @@
 import React from "react";
 import List from '@mui/material/List';
-// import ListItemText from '@mui/material/ListItemText';
-// import Typography from '@mui/material/Typography';
 import {Chat} from "./index"
-import { makeStyles } from "@mui/material";
-
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//         width: '100%',
-//         maxWidth: '36cm',
-//         backgroundColor: theme.palette.background.paper,
-//     },
-// }));
+// import { makeStyles } from "@mui/material";
 
 const Chats = (props) => {
     return (

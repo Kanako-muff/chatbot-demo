@@ -15,7 +15,7 @@ class App extends React.Component {
       dataset: defaultDataset,
       open: false
     }
-    /* Without this, when it called as call back function, selectedAnswer function is created every time it rendered. */
+    /* Without this, when selectedAnswer is called as a call back function, selectedAnswer function is created every time it rendered. */
     this.selectedAnswer = this.selectAnswer.bind(this);
   }
 

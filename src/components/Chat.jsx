@@ -2,7 +2,7 @@ import React from "react";
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import NoProfiel from "../assets/images/no-profile.png"
+import NoProfile from "../assets/images/no-profile.png"
 import Torahack from "../assets/images/torahack.png"
 
 
@@ -16,7 +16,7 @@ const Chat = (props) => {
                 {isQuestion ? (
                     <Avatar alt="icon" src={Torahack} />
                 ) : (
-                    <Avatar alt="icon" src={NoProfiel} />
+                    <Avatar alt="icon" src={NoProfile} />
                 )}
             </ListItemAvatar>
             <div className="p-chat__bubble">{props.text}</div>
